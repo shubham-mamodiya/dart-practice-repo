@@ -70,11 +70,13 @@ class RedBlackTree {
 
   RedBlackTree();
 
-  RedBlackTree.withRoot({required this.root}) {
-    if (this.root != null) {
-      this.root!.color = ColorCondition.black;
-    }
-  }
+  RedBlackTree.withRoot({required this.root});
+
+  RedBlackTree.withContent({
+    required int key,
+    required int value,
+    ColorCondition color = ColorCondition.red,
+  }) : root = Node(key: key, value: value, color: ColorCondition.red);
 
   Node _put(Node? h, int key, int value) {
     if (h == null) {
@@ -133,7 +135,7 @@ int readInt(String prompt) {
 void main() {
   print("Let's make read black tree!!");
 
-  RedBlackTree? tree = RedBlackTree.withRoot(root: Node(key: 5, value: 7));
+  RedBlackTree? tree = RedBlackTree();
   for (int i = 0; i < 5; ++i) {
     print("${i + 1}================");
     int key = readInt("Key: ");
